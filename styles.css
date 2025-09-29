@@ -18,3 +18,10 @@
 h2 {
     font-weight: 500;
 }
+
+.banner-img {
+    height: 350px;
+    /* Fixed height */
+    object-fit: cover;
+    /* Ensures images fill without distortion */
+}
