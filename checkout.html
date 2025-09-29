@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LIPA • Checkout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto flex items-center justify-between py-4 px-6">
+
+            <!-- Left: Sidebar toggle + Logo -->
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleSidebar()" class="text-gray-800 hover:text-indigo-600 focus:outline-none"
+                    aria-label="Toggle menu">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+                <div class="text-2xl font-bold text-indigo-600 cursor-pointer" onclick="location.href='index.html'">
+                    LIPA
+                </div>
+            </div>
+
+            <!-- Search bar -->
+            <div class="flex-1 mx-6">
+                <input type="search" placeholder="What are you looking for?"
+                    class="w-full border rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+
+            <!-- Home, Favorites & Cart -->
+            <div class="flex items-center space-x-6">
+                <!-- Home -->
+                <a href="index.html" aria-label="Home" class="text-gray-600 hover:text-indigo-600">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                    </svg>
+                </a>
+
+                <!-- Favorites -->
+                <a href="favorites.html" aria-label="Your Favorites" class="text-gray-600 hover:text-indigo-600">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+                     2 6 4 4 6.5 4c1.74 0 3.41.81 4.5 2.09
+                     C12.09 4.81 13.76 4 15.5 4
+                     18 4 20 6 20 8.5c0 3.78-3.4 6.86-8.55 11.18L12 21z" />
+                    </svg>
+                </a>
+
+                <!-- Cart -->
+                <a href="cart.html" aria-label="Cart" class="relative text-gray-600 hover:text-indigo-600">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 4h-2l-3 9v7a2 2 0 002 2h14a2 2 0 002-2
+                     v-7l-3-9h-2m0 2h2.1l2.4 7H4.5l2.4-7H9v2h6V6z" />
+                    </svg>
+                    <span id="cartBadge" class="absolute top-0 right-0 inline-flex items-center justify-center
+                       px-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full">
+                        3
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Collapsible Sidebar -->
+        <div id="sidebarMenu" class="absolute left-0 top-20 w-48 bg-black text-white shadow-lg rounded-md
+             p-4 space-y-2 hidden z-50">
+            <a href="index.html" class="block hover:text-indigo-300">🪑 Products</a>
+            <a href="#" class="block hover:text-indigo-300">🎁 Offers & Promotions</a>
+            <a href="#" class="block hover:text-indigo-300">❓ FAQs</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <h1 class="text-3xl font-semibold mb-8">Checkout</h1>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Shipping & Payment Form -->
+            <div class="flex-1 bg-white p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-semibold mb-4">Shipping Address</h2>
+                <form id="checkoutForm" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input type="text" placeholder="First Name" class="border rounded py-2 px-3 w-full" />
+                        <input type="text" placeholder="Last Name" class="border rounded py-2 px-3 w-full" />
+                    </div>
+                    <input type="text" placeholder="Street Address" class="border rounded py-2 px-3 w-full" />
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <input type="text" placeholder="Region" class="border rounded py-2 px-3 w-full" />
+                        <input type="text" placeholder="Barangay" class="border rounded py-2 px-3 w-full" />
+                        <input type="text" placeholder="Zip Code" class="border rounded py-2 px-3 w-full" />
+                    </div>
+
+                    <h2 class="text-2xl font-semibold mt-6 mb-4">Payment Method</h2>
+                    <div class="space-y-2">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="payment" value="card" class="form-radio text-indigo-600"
+                                checked />
+                            <span class="ml-2">Credit/Debit Card</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="payment" value="netbanking" class="form-radio text-indigo-600" />
+                            <span class="ml-2">Net Banking</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="payment" value="paypal" class="form-radio text-indigo-600" />
+                            <span class="ml-2">PayPal</span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="w-full md:w-96 bg-white p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-semibold mb-4">Order Summary</h2>
+                <div class="space-y-4">
+                    <div class="flex justify-between border-b pb-2">
+                        <div>
+                            <p class="font-medium">Product 1</p>
+                            <p class="text-gray-500 text-sm">color: Red</p>
+                        </div>
+                        <p class="font-semibold">₱800.00</p>
+                    </div>
+                    <div class="flex justify-between border-b pb-2">
+                        <div>
+                            <p class="font-medium">Product 2</p>
+                            <p class="text-gray-500 text-sm">color: Blue</p>
+                        </div>
+                        <p class="font-semibold">₱1,200.00</p>
+                    </div>
+                    <div class="flex justify-between border-b pb-2">
+                        <div>
+                            <p class="font-medium">Product 3</p>
+                            <p class="text-gray-500 text-sm">color: Green</p>
+                        </div>
+                        <p class="font-semibold">₱600.00</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 space-y-2">
+                    <div class="flex justify-between">
+                        <span>Merchandise Total:</span>
+                        <span>₱2,600.00</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Shipping Subtotal:</span>
+                        <span>₱150.00</span>
+                    </div>
+                    <div class="flex justify-between font-semibold text-lg">
+                        <span>Total Payment:</span>
+                        <span>₱2,750.00</span>
+                    </div>
+                </div>
+
+                <button type="onclick" class="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
+                    Place Order
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebarMenu').classList.toggle('hidden');
+        }
+    </script>
+</body>
+
+</html>
+```

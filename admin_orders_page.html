@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Products – LIPA Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="flex h-screen">
+
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-md flex flex-col">
+            <div class="px-6 py-4 border-b">
+                <h1 class="text-2xl font-bold text-indigo-600">LIPA</h1>
+            </div>
+            <nav class="flex-1 px-6 py-4 space-y-4">
+                <a href="dashboard.html" class="block hover:text-indigo-600">📊 Dashboard</a>
+                <a href="manage-products.html" class="block font-semibold text-indigo-600">🛠 Manage Products</a>
+                <a href="contents.html" class="block hover:text-indigo-600">📝 Manage Contents</a>
+                <a href="orders.html" class="block hover:text-indigo-600">📦 Manage Orders</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 relative overflow-auto">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-semibold">Manage Products</h2>
+                <button onclick="signOut()" class="text-sm text-red-600 hover:underline focus:outline-none">
+                    🔓 Sign Out
+                </button>
+            </div>
+
+            <!-- Product Table -->
+            <div class="overflow-x-auto bg-white shadow rounded-lg">
+                <table class="min-w-full text-sm text-left">
+                    <thead class="bg-indigo-50 text-indigo-700">
+                        <tr>
+                            <th class="px-4 py-3">Product Name</th>
+                            <th class="px-4 py-3">Description</th>
+                            <th class="px-4 py-3">Dimensions</th>
+                            <th class="px-4 py-3">Quantity</th>
+                            <th class="px-4 py-3">Price</th>
+                            <th class="px-4 py-3">Category</th>
+                            <th class="px-4 py-3">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-table-body">
+                        <!-- JS will inject rows here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Add Product Button -->
+            <button onclick="openAddProductForm()"
+                class="fixed bottom-6 right-6 bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700">
+                ➕
+            </button>
+        </main>
+    </div>
+
+    <script>
+        // Sample product data (replace with Firestore fetch)
+        const products = [
+            {
+                name: "Feature1",
+                description: "Elegant wooden chair",
+                dimensions: "40in - 50x30x20",
+                quantity: 12,
+                price: "Php 2,499.00",
+                category: "Living Room"
+            },
+            {
+                name: "Outdoor Set",
+                description: "Weatherproof patio set",
+                dimensions: "60in - 70x40x30",
+                quantity: 5,
+                price: "Php 5,999.00",
+                category: "Outdoor"
+            }
+        ];
+
+        function renderProducts() {
+            const tbody = document.getElementById("product-table-body");
+            tbody.innerHTML = "";
+
+            products.forEach((prod, index) => {
+                const row = document.createElement("tr");
+                row.className = "border-b";
+
+                row.innerHTML = `
+          <td class="px-4 py-3">${prod.name}</td>
+          <td class="px-4 py-3">${prod.description}</td>
+          <td class="px-4 py-3">${prod.dimensions}</td>
+          <td class="px-4 py-3">${prod.quantity}</td>
+          <td class="px-4 py-3">${prod.price}</td>
+          <td class="px-4 py-3">${prod.category}</td>
+          <td class="px-4 py-3 space-x-2">
+            <button onclick="editProduct(${index})"
+              class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-xs">
+              Edit
+            </button>
+            <button onclick="deleteProduct(${index})"
+              class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-xs">
+              Delete
+            </button>
+          </td>
+        `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function editProduct(index) {
+            alert("Edit product: " + products[index].name);
+            // Open edit modal or redirect to edit form
+        }
+
+        function deleteProduct(index) {
+            if (confirm("Delete product: " + products[index].name + "?")) {
+                products.splice(index, 1);
+                renderProducts();
+            }
+        }
+
+        function openAddProductForm() {
+            alert("Open Add Product Form");
+            // Show modal or redirect to add-product.html
+        }
+
+        function signOut() {
+            alert("Signing out...");
+            window.location.href = "/login.html";
+        }
+
+        document.addEventListener("DOMContentLoaded", renderProducts);
+    </script>
+</body>
+
+</html>

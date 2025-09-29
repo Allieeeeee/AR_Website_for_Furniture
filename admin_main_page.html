@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard – LIPA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="flex h-screen">
+
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-md flex flex-col">
+            <div class="px-6 py-4 border-b">
+                <h1 class="text-2xl font-bold text-indigo-600">LIPA</h1>
+            </div>
+            <nav class="flex-1 px-6 py-4 space-y-4">
+                <a href="admin_products_page.html" class="block text-gray-700 hover:text-indigo-600">🛠 Manage
+                    Products</a>
+                <a href="admin_analytics_page.html" class="block text-gray-700 hover:text-indigo-600">📊 Analytics
+                    Dashboard</a>
+                <a href="admin_contents_page.html" class="block text-gray-700 hover:text-indigo-600">📝 Manage
+                    Contents</a>
+                <a href="admin_orders_page.html" class="block text-gray-700 hover:text-indigo-600">📦 Manage Orders</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 relative">
+            <!-- Sign Out -->
+            <div class="absolute top-6 right-6">
+                <button onclick="signOut()" class="text-sm text-red-600 hover:underline focus:outline-none">
+                    🔓 Sign Out
+                </button>
+            </div>
+
+            <!-- Greeting -->
+            <h2 class="text-3xl font-semibold mb-6">Hello Admin!</h2>
+        </main>
+    </div>
+
+    <script>
+        function signOut() {
+            // Replace with Firebase signOut logic or redirect
+            alert("Signing out...");
+            window.location.href = "/login.html";
+        }
+    </script>
+</body>
+
+</html>

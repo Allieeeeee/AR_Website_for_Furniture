@@ -1,0 +1,20 @@
+/* Constrain search input on large screens */
+.navbar .form-control {
+    max-width: 400px;
+}
+
+/* Ensure product images fill card area */
+.card-img-top {
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Adjust icon spacing in navbar */
+.navbar .bi {
+    cursor: pointer;
+}
+
+/* Section header styling */
+h2 {
+    font-weight: 500;
+}
